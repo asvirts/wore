@@ -1,0 +1,50 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "WoreStoreKitConfiguration",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "7.99",
+      "familyShareable" : true,
+      "internalID" : "A17E0C01",
+      "localizations" : [
+        {
+          "description" : "One-time unlock: unlimited garments, cost per wear, the unworn list, trip lists, and the Home Screen widget.",
+          "displayName" : "Wore Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.asvirts.wore.pro",
+      "referenceName" : "Wore Pro (One-Time Unlock)",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "10000002",
+    "_developerTeamID" : "",
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

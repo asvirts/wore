@@ -1,0 +1,108 @@
+name: Wore
+options:
+  bundleIdPrefix: com.asvirts
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    DEVELOPMENT_TEAM: "H4ND8LAYMT"
+
+packages:
+  WoreKit:
+    path: Packages/WoreKit
+
+targets:
+  Wore:
+    type: application
+    supportedDestinations: [iOS]
+    sources:
+      - path: Wore
+        excludes:
+          - Resources/Wore.storekit
+      - path: Wore/Resources/Wore.storekit
+        buildPhase: none
+    dependencies:
+      - package: WoreKit
+        product: WoreCore
+      - package: WoreKit
+        product: WoreVision
+      - package: WoreKit
+        product: WoreStore
+      - target: WoreWidgets
+    entitlements:
+      path: Wore/Wore.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.asvirts.wore
+    info:
+      path: Wore/Info.plist
+      properties:
+        CFBundleDisplayName: Wore
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.lifestyle
+        ITSAppUsesNonExemptEncryption: false
+        NSCameraUsageDescription: Wore uses the camera so you can photograph a garment you own. The photo stays on this device.
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        CFBundleURLTypes:
+          - CFBundleURLName: com.asvirts.wore
+            CFBundleURLSchemes:
+              - wore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.asvirts.wore
+        PRODUCT_NAME: Wore
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_STYLE: Automatic
+    scheme:
+      storeKitConfiguration: Wore/Resources/Wore.storekit
+      testTargets: []
+
+  WoreWidgets:
+    type: app-extension
+    supportedDestinations: [iOS]
+    sources:
+      - path: WoreWidgets
+      - path: Wore/Resources/PrivacyInfo.xcprivacy
+    dependencies:
+      - package: WoreKit
+        product: WoreCore
+    entitlements:
+      path: WoreWidgets/WoreWidgets.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.asvirts.wore
+    info:
+      path: WoreWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Wore
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.asvirts.wore.widgets
+        PRODUCT_NAME: WoreWidgets
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGN_STYLE: Automatic
+        SKIP_INSTALL: YES
