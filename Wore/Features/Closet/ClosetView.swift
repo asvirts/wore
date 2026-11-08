@@ -11,7 +11,6 @@ struct ClosetView: View {
 
     @State private var search = ""
     @State private var category: GarmentCategory?
-    @State private var showAdd = false
     @State private var showSettings = false
 
     private var columns: [GridItem] {
@@ -29,7 +28,8 @@ struct ClosetView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        @Bindable var router = router
+        return NavigationStack {
             Group {
                 if garments.isEmpty {
                     empty
@@ -57,7 +57,7 @@ struct ClosetView: View {
                     .accessibilityLabel("Add a garment")
                 }
             }
-            .sheet(isPresented: $showAdd) {
+            .sheet(isPresented: $router.showAdd) {
                 NavigationStack {
                     AddGarmentView()
                 }
@@ -157,7 +157,7 @@ struct ClosetView: View {
 
     private func addTapped() {
         if ClosetCap.canAddGarment(existingCount: garments.count, isPro: entitlements.isPro) {
-            showAdd = true
+            router.showAdd = true
         } else {
             router.showPaywall = true
         }
